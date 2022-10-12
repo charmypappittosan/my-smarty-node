@@ -35,7 +35,10 @@ const users = [
 ];
 app.get("/user",(req,res)=>{
     console.log("query",req.query);
-    res.send(users);
+    const search=req.query.name.toLocaleLowerCase();
+    const matched=users.filter(user=>user.name.toLocaleLowerCase().includes(search));
+
+    res.send(matched);
 })
 app.get("/user/:id",(req,res)=>{
     console.log(req.params);
